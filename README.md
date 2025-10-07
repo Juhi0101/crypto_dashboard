@@ -1,16 +1,67 @@
-# React + Vite
+# Crypto Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React dashboard displaying real-time cryptocurrency market data using the CoinGecko API. Users can browse coins, search, sort, and view detailed stats.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse top cryptocurrencies with live market data
+- Search coins by name or symbol
+- Sort by Market Cap, Price, 24h %, and Volume
+- Pagination for easy navigation
+- Click any coin to see detailed stats in a modal
+- Mobile and desktop responsive
 
-## React Compiler
+## Tech Stack
+- **Frontend:** React (Vite)  
+- **Styling:** TailwindCSS  
+- **State Management:** React Hooks (`useState`, `useMemo`, `useEffect`)  
+- **API:** CoinGecko API  
+- **Deployment:** Vercel 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Setup
 
-## Expanding the ESLint configuration
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd crypto_dashboard
+```
+2. Install dependencies:
+```bash
+npm install
+```
+3. Create a `.env` file in the root directory with:
+```bash
+VITE_BASE_URL=https://api.coingecko.com/api/v3
+```
+4. Run the development server:
+```bash
+npm run dev
+```
+The app will be available at `http://localhost:5173`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Deployment
+
+This project can be deployed on Vercel:
+
+1. Push your latest code to GitHub.
+2. Go to [Vercel](https://vercel.com/) → New Project → Import Git Repository.
+3. Configure project:
+   - Framework: Vite
+   - Root Directory: `/`
+   - Environment Variables: `VITE_BASE_URL=https://api.coingecko.com/api/v3`
+4. Deploy the project. Vercel will provide a live URL for your app.
+
+## Usage
+
+- Use the search input to find coins by name or symbol.
+- Click on table headers to sort by Market Cap, Price, 24h %, or Volume.
+- Click on a coin row to view detailed statistics in a modal.
+- Navigate through pages using the pagination buttons.
+
+## Contributing
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Make your changes and commit: `git commit -m "Add your feature"`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Create a pull request
