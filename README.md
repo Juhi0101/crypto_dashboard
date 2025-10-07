@@ -49,7 +49,7 @@ This project can be deployed on Vercel:
    - Framework: Vite
    - Root Directory: `/`
    - Environment Variables: `VITE_BASE_URL=https://api.coingecko.com/api/v3`
-   **Note:** The project works out-of-the-box without an `.env` file. In `api.js`, the app uses the local `/api` proxy when developing and the real CoinGecko API when live.
+   - **Note: The project works out-of-the-box without an `.env` file. In `api.js`, the app uses the local `/api` proxy when developing and the real CoinGecko API when live.**
 
 4. Deploy the project. Vercel will provide a live URL for your app.
 
