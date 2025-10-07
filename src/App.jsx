@@ -1,15 +1,19 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Highlights from "./components/Highlights";
 import AllCoins from "./components/AllCoins";
+import Highlights from "./components/Highlights";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900">
+    <Router>
       <Navbar />
-      <main className="max-w-6xl mx-auto p-4">
-        <Highlights />
-        <AllCoins />
-      </main>
-    </div>
+      <div className="container mx-auto px-4">
+        <Routes>
+          <Route path="/" element={<Navigate to="/all" replace />} />
+          <Route path="/all" element={<AllCoins />} />
+          <Route path="/highlights" element={<Highlights />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
