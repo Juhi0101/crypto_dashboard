@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import HighlightSection from "./HighlightSection";
 import CoinModal from "./CoinModal";
 import { BASE_URL } from "../config/api";
+import Loading from "./Loading"
 
 export default function Highlights() {
   const [allCoins, setAllCoins] = useState([]);
@@ -35,7 +36,7 @@ export default function Highlights() {
   const handleCardClick = (coin) => setSelectedCoin(coin);
   const closeModal = () => setSelectedCoin(null);
 
-  // Top Gainers & Losers (already memoized)
+  //top Gainers & Losers
   const topGainers = useMemo(() => {
     return allCoins
       .slice()
@@ -50,7 +51,7 @@ export default function Highlights() {
       .slice(0, 5);
   }, [allCoins]);
 
-  // Trending coins memoized
+  //trending coins
   const trendingCoins = useMemo(() => {
     return trendingData.coins.map(({ item }) => ({
       id: item.id,
@@ -69,9 +70,7 @@ export default function Highlights() {
     <div className="my-6 space-y-6">
       {selectedCoin && <CoinModal coin={selectedCoin} onClose={closeModal} />}
 
-      {loading ? (
-        <p>Loading highlights…</p>
-      ) : (
+      {loading ? <Loading /> : (
         <>
           <HighlightSection
             title="Top Gainers (24h)"

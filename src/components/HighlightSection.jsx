@@ -2,8 +2,8 @@ import HighlightCard from "./HighlightCard";
 
 export default function HighlightSection({ title, coins, onCoinClick }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-4">
-      <h2 className="text-xl font-semibold mb-4">{title}</h2>
+    <div className="bg-white rounded-xl shadow-md p-4 border border-gray-200 mb-6">
+      <h2 className="text-xl font-semibold mb-4 text-gray-800">{title}</h2>
       {coins.length === 0 ? (
         <p className="text-gray-500">No data available.</p>
       ) : (

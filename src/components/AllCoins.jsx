@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../config/api";
 import useDebounce from "../hooks/useDebounce";
 import CoinModal from "./CoinModal"
+import Loading from "./Loading";
 
 function formatNumber(num) {
   if (!num && num !== 0) return "-";
@@ -96,9 +97,12 @@ export default function AllCoins() {
   ];
 
   return (
-    <section className="my-8">
-      <h2 className="text-2xl font-semibold mb-4">All Coins</h2>
+    <section className="my-10 bg-white shadow-md rounded-xl p-6 border border-gray-200">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">All Coins</h2>
 
+      <p className="text-gray-500 mb-3 text-sm">
+        Browse the latest crypto market data. Click any coin for detailed stats.
+      </p>
       {/* Search Input */}
       <div className="mb-4 flex justify-start">
         <input
@@ -106,7 +110,7 @@ export default function AllCoins() {
           placeholder="Search coins..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full max-w-sm px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+          className="w-full max-w-sm px-3 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600"
         />
       </div>
 
@@ -118,9 +122,8 @@ export default function AllCoins() {
       )}
 
       {/* Loading state */}
-      {loading && !error && (
-        <div className="text-gray-500 animate-pulse p-2">Loading coins…</div>
-      )}
+      {loading && !error && <Loading />}
+
 
       {/* Empty state */}
       {!loading && !error && filteredCoins.length === 0 && (
@@ -129,16 +132,14 @@ export default function AllCoins() {
 
       {/* Data table */}
       {filteredCoins.length > 0 && (
-        <div className="overflow-x-auto bg-white shadow rounded-lg">
+        <div className="overflow-x-auto rounded-lg border border-gray-200">
           <table className="min-w-full text-sm">
-            <thead className="bg-gray-100 text-left">
+            <thead className="bg-gray-50 text-left text-gray-700 uppercase text-md tracking-wide border-b">
               <tr>
                 {headers.map((header) => (
                   <th
                     key={header.key}
-                    className={`py-3 px-4 cursor-pointer ${
-                      sortConfig.key === header.key ? "font-semibold" : "font-normal"
-                    }`}
+                    className={`py-3 px-4 cursor-pointer text-gray-800 font-semibold`}
                     onClick={() => header.sortable !== false && handleSort(header.key)}
                   >
                     {header.label}
@@ -151,7 +152,7 @@ export default function AllCoins() {
               {filteredCoins.map((coin) => (
                 <tr
                   key={coin.id}
-                  className="border-t hover:bg-gray-50 transition cursor-pointer"
+                  className="border-t border-gray-200 shadow-sm shadow-gray-100 hover:bg-gray-50 transition cursor-pointer"
                   onClick={() => setSelectedCoin(coin)}
                 >
                   <td className="py-2 px-4">{coin.market_cap_rank}</td>
@@ -184,7 +185,7 @@ export default function AllCoins() {
         <button
           onClick={() => setPage((p) => Math.max(p - 1, 1))}
           disabled={page === 1 || loading}
-          className="px-3 py-1 border rounded disabled:opacity-40"
+          className="px-3 py-1 border border-gray-200 shadow-sm rounded-lg hover:bg-green-100 transition disabled:opacity-40"
         >
           ← Prev
         </button>
@@ -192,7 +193,7 @@ export default function AllCoins() {
         <button
           onClick={() => setPage((p) => p + 1)}
           disabled={loading}
-          className="px-3 py-1 border rounded"
+          className="px-3 py-1 border border-gray-200 shadow-sm rounded-lg hover:bg-green-100 transition disabled:opacity-40"
         >
           Next →
         </button>

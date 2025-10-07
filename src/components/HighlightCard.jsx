@@ -8,7 +8,7 @@ export default function HighlightCard({ coin, onClick }) {
   return (
     <div
       onClick={() => onClick(coin)}
-      className="flex items-center justify-between gap-3 p-3 dark:bg-gray-800 rounded-xl shadow hover:shadow-lg cursor-pointer transition-all duration-200 ease-in-out"
+      className="flex items-center justify-between gap-3 p-3 dark:bg-gray-800 rounded-xl shadow hover:shadow-lg hover:bg-gray-50 cursor-pointer transition-all duration-200 ease-in-out"
     >
       {/* Leftmost: market cap rank */}
       <span className="font-bold text-gray-700 w-6 text-center">

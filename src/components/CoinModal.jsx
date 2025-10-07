@@ -22,13 +22,13 @@ export default function CoinModal({ coin, onClose }) {
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center z-50 bg-white/10 backdrop-blur-sm transition-opacity duration-200 ${
+      className={`fixed inset-0 flex items-center justify-center z-50 bg-white/40 backdrop-blur-sm transition-opacity duration-200 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleClose} //click outside closes modal
     >
       <div
-        className={`bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 relative transform transition-all duration-200 ${
+        className={`bg-white rounded-xl shadow-lg shadow-gray-300 border border-gray-200 max-w-lg w-full p-6 relative transform transition-all duration-200${
           isVisible ? "scale-100" : "scale-95"
         }`}
         onClick={handleModalClick} //prevent close when clicking inside
