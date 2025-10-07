@@ -17,6 +17,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Left: logo/title */}
           <div className="flex items-center gap-3">
+            <img
+              src="https://static.coingecko.com/s/gecko-405ed53b475f61244130f95742a07da15f7ac30feeed5072812ae5c2d73b6194.svg"
+              alt="CoinGecko Logo"
+              className="w-10 h-10"
+            />
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-gray-800">Crypto Dashboard</h1>
               <p className="text-xs text-gray-500 hidden sm:block">Live coin prices & highlights</p>
