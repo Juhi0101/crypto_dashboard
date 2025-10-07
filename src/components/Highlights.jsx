@@ -5,7 +5,7 @@ import { BASE_URL } from "../config/api";
 
 export default function Highlights() {
   const [allCoins, setAllCoins] = useState([]);
-  const [trendingCoins, setTrendingCoins] = useState([]);
+  const [trendingData, setTrendingData] = useState({ coins: [] });
   const [loading, setLoading] = useState(true);
   const [selectedCoin, setSelectedCoin] = useState(null);
 
@@ -13,30 +13,15 @@ export default function Highlights() {
     const fetchHighlights = async () => {
       setLoading(true);
       try {
-        //Fetch coins
         const coinsRes = await fetch(
           `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1`
         );
         const coinsData = await coinsRes.json();
         setAllCoins(coinsData);
 
-        //Fetch trending coins
         const trendingRes = await fetch(`${BASE_URL}/search/trending`);
         const trendingData = await trendingRes.json();
-
-        //Normalize trending coins
-        const normalizedTrending = trendingData.coins.map(({ item }) => ({
-          id: item.id,
-          name: item.name,
-          symbol: item.symbol,
-          market_cap_rank: item.market_cap_rank ?? null,
-          image: item.thumb || item.small || item.large,
-          current_price: item.data?.price ?? null,
-          price_change_percentage_24h: item.data?.price_change_percentage_24h?.usd ?? null,
-          market_cap: item.data?.market_cap ?? null,
-          total_volume: item.data?.total_volume ?? null,
-        }));
-        setTrendingCoins(normalizedTrending);
+        setTrendingData(trendingData);
       } catch (error) {
         console.error("Error fetching highlights:", error);
       } finally {
@@ -50,7 +35,7 @@ export default function Highlights() {
   const handleCardClick = (coin) => setSelectedCoin(coin);
   const closeModal = () => setSelectedCoin(null);
 
-  //top Gainers (descending)
+  // Top Gainers & Losers (already memoized)
   const topGainers = useMemo(() => {
     return allCoins
       .slice()
@@ -58,13 +43,27 @@ export default function Highlights() {
       .slice(0, 5);
   }, [allCoins]);
 
-  //top Losers (ascending)
   const topLosers = useMemo(() => {
     return allCoins
       .slice()
       .sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h)
       .slice(0, 5);
   }, [allCoins]);
+
+  // Trending coins memoized
+  const trendingCoins = useMemo(() => {
+    return trendingData.coins.map(({ item }) => ({
+      id: item.id,
+      name: item.name,
+      symbol: item.symbol,
+      market_cap_rank: item.market_cap_rank ?? null,
+      image: item.thumb || item.small || item.large,
+      current_price: item.data?.price ?? null,
+      price_change_percentage_24h: item.data?.price_change_percentage_24h?.usd ?? null,
+      market_cap: item.data?.market_cap ?? null,
+      total_volume: item.data?.total_volume ?? null,
+    }));
+  }, [trendingData]);
 
   return (
     <div className="my-6 space-y-6">
