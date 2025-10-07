@@ -18,6 +18,17 @@ A responsive React dashboard displaying real-time cryptocurrency market data usi
 - **API:** CoinGecko API  
 - **Deployment:** Vercel 
 
+## Design Patterns & Rationale
+* **Hooks for State & Effects:** Simplifies API fetching, caching, and reactive updates
+* **Custom Hooks (`useFetch`, `useDebounce`):** Reusable logic for API calls and debounced search
+* **Component Modularity:** Each UI section (All Coins, Highlights, CoinModal, Loading) is self-contained for clarity and maintainability
+
+## Assumptions, Limitations & Future Improvements
+* Assumes CoinGecko API is publicly accessible; no backend required
+* Currently only handles USD prices
+* Search requires improvement in logic.
+* Future improvements: more currencies, enhanced filtering/sorting, user preferences, improved error handling
+
 ## Setup
 
 1. Clone the repository:
