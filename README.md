@@ -33,7 +33,7 @@ A responsive React dashboard displaying real-time cryptocurrency market data usi
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/Juhi0101/crypto_dashboard
 cd crypto_dashboard
 ```
 2. Install dependencies:
