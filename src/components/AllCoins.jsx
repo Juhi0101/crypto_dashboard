@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import useFetch from "../hooks/useFetch";
+import { BASE_URL } from "../config/api";
 
 function formatNumber(num) {
   if (!num && num !== 0) return "-";
@@ -10,7 +11,7 @@ export default function AllCoins() {
   const [page, setPage] = useState(1);
 
   const url = useMemo(() => {
-    return `/api/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${page}&price_change_percentage=24h`;
+    return `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${page}&price_change_percentage=24h`;
   }, [page]);
 
   const { data: coins, loading, error } = useFetch(url);
